@@ -2,7 +2,7 @@
 #include<string.h>
 #include<stdlib.h>
 #include<math.h>
-#include<dos.h>
+
 int n,r;
 struct frame{
 	char ack;
@@ -15,6 +15,9 @@ void resend_sr(void);
 void resend_gb(void);
 void goback(void);
 void selective(void);
+
+
+
 int main(){
 	int c;
 	do{
@@ -29,6 +32,7 @@ int main(){
 				
 	}
 	while(c>=4);
+	return 0;
 }
 void goback(){
 	sender();
@@ -46,6 +50,9 @@ void selective(){
 	
 }
 
+
+
+
 int sender(){
 	int i;
 	printf("\n Enter the no of frames to be sent \n");
@@ -62,11 +69,11 @@ int sender(){
 
 void rec_vack(){
 	int i;
-	int m;
+	//int m;
 	rand();
-	m=rand();
-	r=m%n;
-	printf("Random number is : %d",m);
+	r=rand() % n;
+	//r=m%n;
+	//printf("Random number is : %d",m);
 	frm[r].ack='n';
 	for(i=1;i<=n;i++){
 		if (frm[i].ack=='n') printf("\n The frame number %d is not received \n",r);
@@ -75,12 +82,12 @@ void rec_vack(){
 }
 
 void resend_sr(){
-	int i;
+	//int i;
 	printf("\n resending frame %d",r);
 	//for(i=r;i<=n;i++){
 	sleep(2);
 	frm[r].ack='y';
-	printf("\n Received frame is %d",frm[i].data);
+	printf("\n Received frame is %d",frm[r].data);
 //}
 }
 
