@@ -19,24 +19,6 @@ void XOR()
     for (j = 1; j < N; j++)
         check_value[j] = ((check_value[j] == gen_poly[j]) ? '0' : '1');
 }
-// Function to check for errors on the receiver side
-void receiver()
-{
-    // get the received data
-    printf("Enter the received data: ");
-    scanf("%s", data);
-    printf("\n-----------------------------\n");
-    printf("Data received: %s", data);
-    // Cyclic Redundancy Check
-    crc();
-    // Check if the remainder is zero to find the error
-    for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++)
-        ;
-    if (i < N - 1)
-        printf("\nError detected\n\n");
-    else
-        printf("\nNo error detected\n\n");
-}
 
 void crc()
 {
@@ -56,6 +38,27 @@ void crc()
     } while (i <= data_length + N - 1);
     // loop until the data ends
 }
+
+// Function to check for errors on the receiver side
+void receiver()
+{
+    // get the received data
+    printf("Enter the received data: ");
+    scanf("%s", data);
+    printf("\n-----------------------------\n");
+    printf("Data received: %s", data);
+    // Cyclic Redundancy Check
+    crc();
+    // Check if the remainder is zero to find the error
+    for (i = 0; (i < N - 1) && (check_value[i] != '1'); i++)
+        ;
+    if (i < N - 1)
+        printf("\nError detected\n\n");
+    else
+        printf("\nNo error detected\n\n");
+}
+
+
 
 int main()
 {
